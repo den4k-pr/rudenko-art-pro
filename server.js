@@ -78,10 +78,10 @@ app.post('/api/busket', (req, res) => {
     );
 });
 
-app.use(express.static(path.json(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.get("*", function (req, res) {
-  res.sendFile(path.json(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
 mongoose.connect("mongodb://localhost:27017")
