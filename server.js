@@ -80,9 +80,7 @@ app.post('/api/busket', (req, res) => {
 
 mongoose.connect("mongodb://localhost:27017")
     .then(() => {
-        app.listen(process.env.PORT || port, () => {
-            console.log(`App listenig on port ${port}`)
-        })
+        app.listen(process.env.PORT)
     })
 
 
