@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const mg = require('mailgun-js');
 const app = express();
-const path = require('path');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
@@ -78,11 +77,6 @@ app.post('/api/busket', (req, res) => {
     );
 });
 
-app.use(express.static(path.json(__dirname, "./client/build")));
-
-app.get("*", function (req, res) {
-  res.sendFile(path.json(__dirname, "./client/build/index.html"));
-})
 
 mongoose.connect("mongodb://localhost:27017")
     .then(() => {
