@@ -5,7 +5,7 @@ const mg = require('mailgun-js');
 const app = express();
 const path = require('path');
 require('dotenv').config();
-
+const PORT = 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -84,9 +84,6 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
-mongoose.connect("mongodb://localhost:27017")
-    .then(() => {
-        app.listen(3000 || 5000)
-    })
+app.listen(process.env.PORT || PORT, ()=> console.log("zaibis"));
 
 
