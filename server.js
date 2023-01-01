@@ -86,7 +86,7 @@ app.get("*", function (req, res) {
 
 mongoose.connect("mongodb://localhost:27017")
     .then(() => {
-        app.listen(3030 || 5000)
+        app.listen(3000 || 5000)
     })
 
 
