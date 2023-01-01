@@ -5,7 +5,7 @@ const mg = require('mailgun-js');
 const app = express();
 const path = require('path');
 require('dotenv').config();
-const port = process.env.PORT;
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -86,7 +86,7 @@ app.get("*", function (req, res) {
 
 mongoose.connect("mongodb://localhost:27017")
     .then(() => {
-        app.listen(process.env.PORT)
+        app.listen(3030 || 5000)
     })
 
 
