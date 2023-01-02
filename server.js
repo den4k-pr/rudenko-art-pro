@@ -84,12 +84,13 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
+app.listen(process.env.PORT || PORT, ()=> console.log("zaibis"))
+
 const MONGO_URL =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pn5jxqp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
  
 mongoose.connect(MONGO_URL)
-    .then(() => {
-        app.listen(process.env.PORT || PORT, ()=> console.log("zaibis"))
-    })
+    .then(() => console.log(good))
+    .catch(err => console.log("error", err))
 
 
 
