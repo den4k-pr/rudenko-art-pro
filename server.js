@@ -5,7 +5,7 @@ const mg = require('mailgun-js');
 const app = express();
 const path = require('path');
 require('dotenv').config();
-const PORT = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,10 +13,6 @@ app.use("/static", express.static(__dirname + "/assets"));
 app.use('/api/planes', require('./routes/planes'))
 app.use('/api/painters', require('./routes/painters'))
 app.use('/api/categories', require('./routes/categories'))
-
-app.use('/api/pain', (res, req) => {
-    res.send('paint')
-})
 
 app.get('/', (req, res) => {
     res.send('Hellow world!')
@@ -84,17 +80,13 @@ app.post('/api/busket', (req, res) => {
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", function (req, res) {
+app.get("*", function (res, req) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-})
+});
 
-app.listen(process.env.PORT || PORT, ()=> console.log("zaibis"))
-
-const MONGO_URL =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pn5jxqp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
- 
-mongoose.connect(MONGO_URL)
-    .then(() => console.log(good))
-    .catch(err => console.log("error", err))
-
+mongoose.connect("mongodb://localhost:27017")
+    .then(() => {
+        app.listen(process.env.PORT || port)
+    })
 
 
