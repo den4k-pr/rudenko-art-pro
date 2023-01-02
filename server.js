@@ -84,7 +84,7 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
-const MONGO_URL =`mongodb+srv://Den4ik_:frgX6V21e7ZugwE7@cluster0.pn5jxqp.mongodb.net/rudenko-art-pro?retryWrites=true&w=majority`
+const MONGO_URL =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pn5jxqp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
  
 mongoose.connect(MONGO_URL)
     .then(() => {
