@@ -14,6 +14,10 @@ app.use('/api/planes', require('./routes/planes'))
 app.use('/api/painters', require('./routes/painters'))
 app.use('/api/categories', require('./routes/categories'))
 
+app.use('/api/pain', (res, req) => {
+    res.send('paint')
+})
+
 app.get('/', (req, res) => {
     res.send('Hellow world!')
 });
